@@ -18,19 +18,24 @@ Vue.use(Vuex)
 const db = new Kinto()
 const tasksCollection = db.collection('tasks')
 
+const syncOptions = {
+  remote: 'http://localhost:8888/v1',
+  headers: {Authorization: 'Basic ' + btoa('user:pass')}
+}
+
 const store = new Vuex.Store({
   state: {
     tasks: []
   },
   mutations: {
-    setTasks (state, payload) {
-      state.tasks = payload
+    setTasks (state, tasks) {
+      state.tasks = tasks
     },
-    createTask (state, payload) {
-      state.tasks.push(payload)
+    createTask (state, data) {
+      state.tasks.push(data)
     },
-    deleteTask (state, payload) {
-      const id = payload.task.id
+    deleteTask (state, task) {
+      const id = task.id
       const index = state.tasks.findIndex((t) => t.id === id)
       state.tasks.splice(index, 1)
     }
@@ -81,6 +86,9 @@ const store = new Vuex.Store({
           reject
         )
       })
+    },
+    sync () {
+      return tasksCollection.sync(syncOptions)
     }
   }
 })

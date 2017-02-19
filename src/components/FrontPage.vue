@@ -19,7 +19,8 @@
           </li>
         </ul>
         <input class="form-control" v-model="text" type="text" name="title" placeholder="Thing">
-        <button class="btn btn-primary" @click="createTask">Add</button>
+        <button class="btn btn-primary" @click="createTask"><i class="on-left">add</i>Add</button>
+        <button class="btn" @click="sync"><i class="on-left">cached</i>Sync<button>
       </div>
     </div>
   </q-layout>
@@ -52,6 +53,13 @@ export default {
     setTaskStatus (task, status) {
       task.done = status
       this.$store.dispatch('updateTask', { task }).then((res) => {})
+    },
+    sync () {
+      this.$store.dispatch('sync').then(() => {
+        console.log('synced')
+      }).catch((err) => {
+        console.log('Error syncing', err)
+      })
     }
   },
   mounted () {
