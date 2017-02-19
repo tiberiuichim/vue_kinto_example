@@ -1,7 +1,6 @@
 # Quasar App
 
-> A minimal projectt exploring replicating the Kinto.js tutorial in a Vue.js
-> + Quasar Framework environment.
+> A minimal project that replicates the Kinto.js tutorial in a Vue.js + Quasar Framework environment.
 
 ## Build Setup
 
