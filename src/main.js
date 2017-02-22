@@ -16,7 +16,7 @@ Vue.use(Quasar) // Install Quasar Framework
 Vue.use(Vuex)
 
 const db = new Kinto()
-const tasksCollection = db.collection('tasks')
+const tasksCollection = db.collection('tasksV2')
 
 const syncOptions = {
   remote: 'http://localhost:8888/v1',
