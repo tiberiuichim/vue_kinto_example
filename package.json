@@ -1,8 +1,8 @@
 {
-  "name": "quasar-app",
+  "name": "kinto-vue-example",
   "version": "0.0.1",
-  "description": "A Quasar App",
-  "author": "Your Name",
+  "description": "Kinto + Vue example",
+  "author": "Tiberiu Ichim",
   "scripts": {
     "clean": "node build/script.clean.js",
     "dev": "node build/script.dev.js",
