@@ -11,6 +11,7 @@ import Vuex from 'vuex'
 import Quasar from 'quasar'
 import router from './router'
 import Kinto from 'kinto'
+import config from './config'
 
 Vue.use(Quasar) // Install Quasar Framework
 Vue.use(Vuex)
@@ -19,8 +20,8 @@ const db = new Kinto()
 const tasksCollection = db.collection('tasksV2')
 
 const syncOptions = {
-  remote: 'http://localhost:8888/v1',
-  headers: {Authorization: 'Basic ' + btoa('user:pass')}
+  remote: config.kintoRemoteServer,
+  headers: { Authorization: 'Basic ' + btoa('user:pass') }
 }
 
 const store = new Vuex.Store({

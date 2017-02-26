@@ -3,12 +3,13 @@
   <q-layout>
     <div slot="header" class="toolbar">
       <q-toolbar-title :padding="0">
-        Quasar Framework v{{$q.version}}
+        DoDoList
       </q-toolbar-title>
+      <login-button v-bind:fb-app-id="fbappid" v-on:logged-in='handleLogin'></login-button>
     </div>
 
     <div class="layout-view">
-      <div class="layout-padding">
+      <div class="layout-padding" v-if="connected">
         <ul>
           <li v-for="task in tasks">
             <label>
@@ -28,13 +29,21 @@
 </template>
 
 <script>
+import LoginButton from './LoginButton.vue'
+import config from '../config'
+
 export default {
   data () {
     return {
+      connected: false,
       text: '',
       db: null,
-      tasks: []
+      tasks: [],
+      fbappid: config.facebookAppId
     }
+  },
+  components: {
+    LoginButton
   },
   methods: {
     createTask () {
@@ -60,6 +69,9 @@ export default {
       }).catch((err) => {
         console.log('Error syncing', err)
       })
+    },
+    handleLogin (info) {
+      console.log('handling login', info)
     }
   },
   mounted () {
